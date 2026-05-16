@@ -33,11 +33,17 @@ export default function ProfileScreen() {
     loadingUpdate: false,
   }); */
 
+  const [, setConfirmPassword] = useState('');
+
+  const [, dispatch] = useReducer(reducer, {
+    loadingUpdate: false,
+  });
+
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        '/api/users/profile',
+        `${process.env.REACT_APP_API_URL}/api/users/profile`,
         {
           name,
           email,
